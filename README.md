@@ -1,5 +1,9 @@
 # neovim config 
 
+This neovim config is forked from <https://github.com/Zwlin98/nvim>. 
+
+Since the original repo has been re-based, this repo is independed.
+
 ## Clone the repo and prepare the enviroments
 
 ```shell
