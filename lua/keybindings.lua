@@ -210,62 +210,39 @@ pluginKeys.mapLSP = function(mapbuf)
 	mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true })
 end
 
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+
 pluginKeys.cmp = function(cmp)
-	local t = function(str)
-		return vim.api.nvim_replace_termcodes(str, true, true, true)
-	end
+	-- local t = function(str)
+		-- return vim.api.nvim_replace_termcodes(str, true, true, true)
+	-- end
 	return {
-		["<Tab>"] = cmp.mapping({
-			c = function()
-				if cmp.visible() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-				else
-					cmp.complete()
-				end
-			end,
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-				elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-				else
-					fallback()
-				end
-			end,
-			s = function(fallback)
-				if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-					vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), "m", true)
-				else
-					fallback()
-				end
-			end,
-		}),
-		["<S-Tab>"] = cmp.mapping({
-			c = function()
-				if cmp.visible() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-				else
-					cmp.complete()
-				end
-			end,
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-				elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-					return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-				else
-					fallback()
-				end
-			end,
-			s = function(fallback)
-				if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-					return vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_backward)"), "m", true)
-				else
-					fallback()
-				end
-			end,
-		}),
-		["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+        ['<Tab>'] = cmp.mapping({
+            i = function(fallback)
+                if not cmp.select_next_item() then
+                    if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback()
+                    end
+                end
+            end,
+        }),
+        ['<S-Tab>'] = cmp.mapping({
+            i = function(fallback)
+                if not cmp.select_prev_item() then
+                    if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback()
+                    end
+                end
+            end,
+        }),
 		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 		["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),

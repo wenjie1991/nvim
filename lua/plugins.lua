@@ -1,6 +1,4 @@
 return require("lazy").setup({
-    -- 插件管理器
-    "wbthomason/packer.nvim",
     -- 文件浏览器
     {
         "nvim-tree/nvim-tree.lua",
@@ -70,12 +68,16 @@ return require("lazy").setup({
     -- 函数列表
     "liuchengxu/vista.vim",
     -- 代码补全
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
-    -- "hrsh7th/cmp-omni",
+    { "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-omni",
+            "jalvesaq/cmp-nvim-r"
+        }
+    },
     -- lsp美化
     "onsails/lspkind-nvim",
     -- 代码片段
