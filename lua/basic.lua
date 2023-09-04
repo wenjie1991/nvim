@@ -1,4 +1,8 @@
--- utf8
+-- disable netrw at the very start of your init.lua for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- utf9
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"
 -- jk移动时光标下上方保留8行
@@ -8,12 +12,12 @@ vim.o.sidescrolloff = 8
 vim.wo.number = true
 vim.wo.relativenumber = true
 -- 高亮所在行
-vim.wo.cursorline = true
+-- vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
 -- vim.wo.colorcolumn = "100"
--- 缩进2个空格等于一个Tab
+-- 缩进4个空格等于一个Tab
 vim.o.tabstop = 4
 vim.bo.tabstop = 4
 vim.o.softtabstop = 4
@@ -31,7 +35,17 @@ vim.o.smartindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- 搜索不要高亮
-vim.o.hlsearch = false
+vim.o.hlsearch = true
+vim.cmd [[
+nmap <silent> <leader>nl :nohlsearch<CR>
+"" other things
+" set formatoptions=ct
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" autocmd FileType * setlocal formatoptions-=o formatoptions-=r 
+set wrap lbr
+set nopaste
+set pastetoggle=<F2>
+]]
 -- 边输入边搜索
 vim.o.incsearch = true
 -- 使用增强状态栏后不再需要 vim 的模式提
@@ -42,18 +56,19 @@ vim.o.showmode = false
 vim.o.autoread = true
 vim.bo.autoread = true
 -- 禁止折行
-vim.o.wrap = false
-vim.wo.wrap = false
+-- vim.o.wrap = true
+-- vim.wo.wrap = true
 -- 行结尾可以跳到下一行
 --vim.o.whichwrap = 'b,s,<,>,[,],h,l'
 -- 允许隐藏被修改过的buffer
 vim.o.hidden = true
 -- 鼠标支持
-vim.o.mouse = "a"
+-- vim.o.mouse = "a"
+vim.g.mouse = "a"
 -- 禁止创建备份文件
 vim.o.backup = false
 vim.o.writebackup = false
-vim.o.swapfile = false
+-- vim.o.swapfile = false
 -- smaller updatetime
 vim.o.updatetime = 300
 -- 设置 timeoutlen 为等待键盘快捷键连击时间200毫秒，可根据需要设置
@@ -65,7 +80,6 @@ vim.o.splitright = true
 -- 自动补全不自动选中
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 -- 样式
-vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.opt.termguicolors = true
 -- 不可见字符的显示，这里只把空格显示为一个点
@@ -79,6 +93,91 @@ vim.o.pumheight = 10
 -- always show tabline
 -- vim.o.showtabline = 2
 vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
-vim.g.mouse = "a"
 vim.g.undofile = true
 vim.undodir = "~/.vim/undo"
+-- show marker
+vim.cmd [[
+"  asterisk  "
+""""""""""""""""""""""""""""""""""""""
+map *  <Plug>(asterisk-z*)
+map #  <Plug>(asterisk-z#)
+map g* <Plug>(asterisk-gz*)
+map g# <Plug>(asterisk-gz#)
+let g:asterisk#keeppos = 1
+]]
+-- disable line number in buildin terminal
+vim.cmd[[ 
+autocmd TermOpen * setlocal nonumber norelativenumber
+]]
+
+-- neovim terminal
+vim.cmd[[ 
+" Neovim terminal Esc map 
+"""""""""""""""""""""""""""""""""""""""""""
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-w>h <C-\><C-N><C-w>h
+tnoremap <C-w>j <C-\><C-N><C-w>j
+tnoremap <C-w>k <C-\><C-N><C-w>k
+tnoremap <C-w>l <C-\><C-N><C-w>l
+inoremap <C-w>h <C-\><C-N><C-w>h
+inoremap <C-w>j <C-\><C-N><C-w>j
+inoremap <C-w>k <C-\><C-N><C-w>k
+inoremap <C-w>l <C-\><C-N><C-w>l
+nnoremap <C-w>h <C-w>h
+nnoremap <C-w>j <C-w>j
+nnoremap <C-w>k <C-w>k
+nnoremap <C-w>l <C-w>l
+
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
+command! -nargs=* TT split | wincmd w | terminal <args>
+command! -nargs=* VT vsplit | wincmd w | terminal <args>
+
+" autocmd TermOpen * setlocal scrollback=10000 | set nonu
+]]
+-- add yank to system clipboard
+vim.cmd[[set clipboard+=unnamedplus]]
+-- replace string
+vim.cmd[[ 
+" Replace name
+""""""""""""""""""""""""""""""""""""""""""
+" ref https://stackoverflow.com/questions/597687/changing-variable-names-in-vim?answertab=votes#tab-top
+" nnoremap gr [{V%:s/<C-R>///gc<left><left><left>
+nnoremap gr gdva{:s/<C-R>///gc<left><left><left>
+" For global replace
+nnoremap gR :%s/<C-R>///gc<left><left><left>
+
+" Replace select string
+vnoremap <C-r> ""y:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>
+" Search select string
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Insert a character
+"""""""""""""""""""""""""""""""""""""""""""
+:nnoremap ,i i_<Esc>r
+:nnoremap ,a a_<Esc>r
+]]
+
+-- setup copilot proxy
+-- vim.g.copilot_proxy = 'http://proxyp:3128'
+-- vim.g.copilot_proxy_strict_ssl = false
+
+vim.api.nvim_create_user_command('ProxyOn', function()
+        vim.g.copilot_proxy = 'http://proxyp:3128'
+        vim.api.nvim_command('Copilot restart')
+        -- vim.g.copilot_proxy_strict_ssl = false
+    end, 
+{})
+vim.api.nvim_create_user_command('ProxyOff', function()
+        vim.g.copilot_proxy = ''
+        vim.api.nvim_command('Copilot restart')
+        -- vim.g.copilot_proxy_strict_ssl = false
+    end, 
+{})
+
+-- curosr move slow
+vim.cmd[[
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
+]]

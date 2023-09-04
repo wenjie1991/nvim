@@ -1,0 +1,35 @@
+priority -50
+
+extends c
+
+snippet fnc "Basic c++ doxygen function template" b
+/**
+* @brief: ${4:brief}
+*
+* @param: `!p write_docstring_args(t[3],snip)`
+*
+* @return: `!p snip.rv = t[1]`
+*/
+${1:ReturnType} ${2:FunctionName}(${3:param})
+{
+	${0:FunctionBody}
+}
+endsnippet
+
+snippet rcpp "rcpp initation" b
+#include <Rcpp.h>
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <random>
+using namespace Rcpp;
+
+// [[Rcpp::plugins("cpp11")]]
+
+// [[Rcpp::export]]
+
+/*** R
+*/
+endsnippet
+
+# vim:ft=snippets:

@@ -5,6 +5,7 @@ if not status then
 end
 
 ident_blankline.setup({
+    enabled = false,
 	-- 空行占位
 	space_char_blankline = " ",
 	-- 用 treesitter 判断上下文
@@ -32,7 +33,6 @@ ident_blankline.setup({
 		"log",
 		"markdown",
 		"TelescopePrompt",
-		"lsp-installer",
 		"lspinfo",
 		"toggleterm",
 	},

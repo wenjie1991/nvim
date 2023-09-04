@@ -1,0 +1,35 @@
+priority -50
+
+snippet rc "A new R chunck" b
+\`\`\`{r ${1:chunk_name}}
+$2
+\`\`\`
+endsnippet
+
+snippet yaml "RMarkdown yaml" b
+---
+title: "${1:title}"
+author: "Wenjie Sun"
+date: "${2:date}"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    theme: united 
+    fig_caption: true
+    highlight: textmate
+    keep_md: true
+always_allow_html: yes
+---
+
+\`\`\`{r echo=F}
+library(knitr)
+opts_chunk$set(echo=T, TOC=T)
+\`\`\`
+endsnippet
+
+
+
+# vim:ft=snippets:

@@ -3,25 +3,37 @@ local cmp = require('cmp')
 local ultisnips = require('lsp.ultisnips')
 ultisnips.setup()
 cmp.setup {
+    completion = {
+      autocomplete = false
+    },
     -- 指定 snippet 引擎
     snippet = {
         expand = function(args)
             vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
+    window = {
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+    },
     -- 来源
     sources = cmp.config.sources(
         {
             { name = 'nvim_lsp' },
             { name = 'ultisnips' },
-        },
-        {
             { name = 'buffer' },
             { name = 'path' }
         }),
 
     -- 快捷键
     mapping = require'keybindings'.cmp(cmp),
+    -- mapping = cmp.mapping.preset.insert({
+    --     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    --     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    --     ['<C-Space>'] = cmp.mapping.complete(),
+    --     ['<C-e>'] = cmp.mapping.abort(),
+    --     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- }),
     -- 使用lspkind-nvim显示类型图标
     formatting = {
         format = lspkind.cmp_format({
@@ -35,21 +47,43 @@ cmp.setup {
         })
     },
 }
--- Use buffer source for `/`.
-cmp.setup.cmdline('/', {
-    completion = { autocomplete = false },
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+        { name = 'buffer' },
+    })
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    completion = {
+        autocomplete = false
+    },
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        -- { name = 'buffer' }
-        { name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] } }
+        { name = 'buffer' }
     }
 })
 
--- Use cmdline & path source for ':'.
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline(),
+    completion = {
+        autocomplete = false
+    },
     sources = cmp.config.sources({
         { name = 'path' }
-        }, {
+    }, {
         { name = 'cmdline' }
     })
 })
+
+-- Set up lspconfig.
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+    -- capabilities = capabilities
+-- }

@@ -1,0 +1,131 @@
+priority -20
+
+# Only active at the begin of the line
+snippet library "Load the initial library for R" b
+library(data.table)
+library(ggplot2)
+library(plyr)
+library(magrittr)
+library(readr)
+library(stringr)
+endsnippet
+
+snippet todo "Add the TODO remainder" b
+## TODO: `echo $USER` ${1:desc} `!v strftime("%c")`
+endsnippet
+
+snippet theme0 "The default theme" b
+theme0 <- theme_bw() + theme(
+    text = element_text(size = 15),
+    line = element_line(linewidth = 1),
+    axis.line = element_line(linewidth = 1),
+    axis.ticks.length = unit(3, units = "mm"),
+    axis.text.x = element_text(
+        margin = margin(t = 2, unit = "mm")
+        , angle = 60, vjust = 1, size = 15, hjust = 1),
+    axis.text.y = element_text(margin = margin(r = 3, l = 5, unit = "mm")),
+    legend.position = "right",
+) 
+theme1 = theme0 + theme(
+    axis.text.x = element_text( 
+        margin = margin(t = 2, unit = "mm")
+        , angle = 0, vjust = 1, size = 12, hjust = 0.5)
+)
+endsnippet
+
+snippet rc "A new R chunck" b
+\`\`\`{r ${1:chunk_name}}
+$2
+\`\`\`
+endsnippet
+
+snippet yaml "RMarkdown yaml" b
+---
+title: "${1:title}"
+author: "Wenjie Sun"
+date: "${2:date}"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    theme: united 
+    fig_caption: true
+    highlight: textmate
+    keep_md: true
+always_allow_html: yes
+---
+
+\`\`\`{r echo=F}
+library(knitr)
+opts_chunk$set(echo=T, TOC=T)
+\`\`\`
+endsnippet
+
+
+snippet pa "A new roxygen param"
+@param 
+endsnippet
+
+snippet re "A new roxygen return"
+@return 
+endsnippet
+
+snippet ex "A new roxygen example"
+@examples
+endsnippet
+
+snippet message "R message"
+message("-message----\n${1:function}: ${0:message}\n------------")
+endsnippet
+
+snippet link "Link to R function"
+\code{\link[${1:package}]{${0:function}}}
+endsnippet
+
+snippet banner "banner to show message"
+## ${1:message}
+###########################
+endsnippet
+
+snippet setGeneric "set Generic function"
+setGeneric("${1:function}", function(${0:pars}) { standardGeneric("${1}") })
+endsnippet
+
+snippet setMethod "set method for class"
+setMethod("${1:class}", c("${2:sign}"), ${0:fun})
+endsnippet
+	
+snippet exportMethod "roxygen exportMethod"
+#' @exportMethod ${0:name}
+endsnippet
+
+snippet rdname "set the rdname" b
+#' @rdname ${0:name}
+endsnippet
+
+snippet rdname "set the rdname"
+@rdname ${0:name}
+endsnippet
+
+snippet dcast "description"
+dcast(${1:data}, ${2:row} ~ ${3:col}, sep = ${4:sep}, ${5:value.var})
+endsnippet
+
+snippet melt "Description"
+melt(${1:data}, ${2:id.vars}, ${3:measure.vars}, variable.name = ${4:variable}, value.name = ${5:value})
+endsnippet
+
+snippet test "statistical test"
+stat.test = d %>%
+    group_by(${1:group}) %>%
+    wilcox_test(${2:group1} ~ ${3:group2}, mu = 0) %>%
+    mutate(y.position = ${4:y_position}) %>%
+    adjust_pvalue() %>% 
+    add_significance()
+endsnippet
+
+snippet #### "add a lot of #"
+#################################################
+endsnippet
