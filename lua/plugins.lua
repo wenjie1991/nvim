@@ -1,4 +1,8 @@
 return require("lazy").setup({
+    defaults = {
+        lazy = true,
+        version = nil, -- dont use version="*"
+    },
     -- 文件浏览器
     {
         "nvim-tree/nvim-tree.lua",
@@ -27,7 +31,10 @@ return require("lazy").setup({
     -- 编辑历史
     -- "simnalamburt/vim-mundo",
     -- 语法高亮，折叠代码，缩进处理
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate"
+    },
     -- lsp支持
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
