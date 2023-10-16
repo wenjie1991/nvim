@@ -8,6 +8,18 @@ return require("lazy").setup({
         "nvim-tree/nvim-tree.lua",
         dependencies = "nvim-tree/nvim-web-devicons",
     },
+    {
+        "kelly-lin/ranger.nvim",
+        config = function()
+            require("ranger-nvim").setup({ replace_netrw = true })
+            vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+                noremap = true,
+                callback = function()
+                    require("ranger-nvim").open(true)
+                end,
+            })
+        end,
+    },
     -- 主题
     "ful1e5/onedark.nvim",
     "rmehri01/onenord.nvim",
@@ -23,7 +35,7 @@ return require("lazy").setup({
     -- 首页
     "goolord/alpha-nvim",
     -- 对齐线
-    "lukas-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     -- tab bar
     { "akinsho/bufferline.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
     -- 状态栏
@@ -66,11 +78,10 @@ return require("lazy").setup({
     'mg979/vim-visual-multi',
     -- 快速跳转
     {
-        "phaazon/hop.nvim",
-        branch = "v2",
-        config = function()
-            require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-        end,
+        "smoka7/hop.nvim"
+        -- config = function()
+            -- require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+        -- end,
     },
     -- 函数列表
     "liuchengxu/vista.vim",

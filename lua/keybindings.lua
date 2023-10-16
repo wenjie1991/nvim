@@ -1,4 +1,4 @@
--- vim.g.mapleader = " "
+-- vim.g.mapleader = " " 
 -- vim.g.maplocalleader = " "
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
@@ -29,10 +29,6 @@ map("n", "<leader>7", "7gt<ct>", opt)
 map("n", "<leader>8", "8gt<ct>", opt)
 map("n", "<leader>9", "9gt<ct>", opt)
 map("n", "<leader>0", "tablast<ct>", opt)
-
--- hop.nvim
-map("n", "<leader>w", ":HopWord<CR>", opt)
-map("n", "<leader>l", ":HopLine<CR>", opt)
 
 -- vista.vim
 map("n", "<leader>\\", ":Vista!!<CR>", { noremap = true })
@@ -148,9 +144,19 @@ vim.cmd([[
     let g:copilot_no_tab_map = v:true
 ]])
 
--- hop
+-- hop.nvim
+map("n", "<leader>w", ":HopWord<CR>", opt)
+map("n", "<leader>l", ":HopLine<CR>", opt)
+map("x", "<leader>w", ":HopWord<CR>", opt)
+map("x", "<leader>l", ":HopLine<CR>", opt)
 local hop = require("hop")
 local directions = require("hop.hint").HintDirection
+vim.keymap.set("", "<leader>l", function()
+    hop.hint_lines()
+end, { remap = true })
+vim.keymap.set("", "<leader>w", function()
+    hop.hint_words()
+end, { remap = true })
 vim.keymap.set("", "f", function()
 	hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
 end, { remap = true })
@@ -243,11 +249,17 @@ pluginKeys.cmp = function(cmp)
                 end
             end,
         }),
-		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+		-- ['<C-Space>'] = cmp.mapping({
+            -- i = function()
+                -- cmp.complete()
+            -- end,
+        -- }),
 		["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+		["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 		["<C-e>"] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		["<C-o>"] = cmp.mapping({i = cmp.mapping.complete(), c = cmp.mapping.complete()}),
 		["<CR>"] = cmp.mapping({
 			i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
 			-- i = cmp.mapping.confirm(),

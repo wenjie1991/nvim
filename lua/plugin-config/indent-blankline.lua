@@ -1,10 +1,10 @@
-local status, ident_blankline = pcall(require, "indent_blankline")
-if not status then
-	vim.notify("没有找到 indent_blankline")
-	return
-end
+-- local status, ident_blankline = pcall(require, "indent_blankline")
+-- if not status then
+	-- vim.notify("没有找到 indent_blankline")
+	-- return
+-- end
 
-ident_blankline.setup({
+require "ibl".setup({
     enabled = false,
 	-- 空行占位
 	space_char_blankline = " ",
