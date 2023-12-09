@@ -199,7 +199,7 @@ vim.keymap.set("n", "<leader>sr", builtin.resume, {})
 
 pluginKeys.mapLSP = function(mapbuf)
 	-- change name
-	mapbuf("n", "cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+	mapbuf("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
 	-- code action
 	mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
 	-- go xx

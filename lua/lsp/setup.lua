@@ -6,7 +6,7 @@ local lsp_servers = {
     "jsonls",
     "html",
     "bashls",
-    -- "r_language_server",
+    "r_language_server",
     "clangd"
 }
 -- using plug "mason" to ensure the installation
