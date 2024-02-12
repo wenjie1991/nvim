@@ -34,6 +34,8 @@ require("plugin-config.vim-r")
 -- require("plugin-config.raku")
 require("plugin-config.comment")
 require("plugin-config.gitsigns")
+require("plugin-config.nvim-ufo")
+require("plugin-config.jupynium")
 
 require("lsp/setup")
 require("lsp/nvim-cmp")

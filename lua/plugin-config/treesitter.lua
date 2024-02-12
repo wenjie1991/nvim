@@ -47,7 +47,7 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 -- 不使用tree sitter Folding
-vim.wo.foldmethod = 'marker'
+-- vim.wo.foldmethod = 'marker'
 -- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- 默认不要折叠
 -- vim.wo.foldlevel = 99

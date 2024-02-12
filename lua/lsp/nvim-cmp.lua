@@ -1,5 +1,6 @@
 local lspkind = require('lspkind')
 local cmp = require('cmp')
+local compare = cmp.config.compare
 local ultisnips = require('lsp.ultisnips')
 ultisnips.setup()
 cmp.setup {
@@ -19,12 +20,21 @@ cmp.setup {
     -- 来源
     sources = cmp.config.sources(
         {
-            { name = 'nvim_lsp' },
-            { name = 'ultisnips' },
-            { name = 'buffer' },
-            { name = 'path' },
-            { name = 'cmp_nvim_r' }
+            { name = "jupynium", priority = 14 },
+            { name = 'nvim_lsp', priority = 11 },
+            { name = 'ultisnips', priority = 20 },
+            { name = 'buffer', priority = 13 },
+            { name = 'path', priority = 5 },
+            { name = 'cmp_nvim_r', priority = 12 }
         }),
+    sorting = {
+        priority_weight = 1.0,
+        comparators = {
+            compare.score,            -- Jupyter kernel completion shows prior to LSP
+            compare.recently_used,
+            compare.locality,
+        },
+    },
     -- 快捷键
     mapping = require'keybindings'.cmp(cmp),
     -- 使用lspkind-nvim显示类型图标
