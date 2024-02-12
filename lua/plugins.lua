@@ -35,7 +35,7 @@ return require("lazy").setup({
     -- 首页
     "goolord/alpha-nvim",
     -- 对齐线
-    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+    -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
     -- tab bar
     { "akinsho/bufferline.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
     -- 状态栏
@@ -55,7 +55,7 @@ return require("lazy").setup({
     -- "junegunn/fzf",
     -- "junegunn/fzf.vim",
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim',
         dependencies =  {'nvim-lua/plenary.nvim'}
     },
     -- 方便操作
@@ -119,6 +119,7 @@ return require("lazy").setup({
     -- 格式化代码
     { "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
     "rlue/vim-barbaric",
+    {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
     -- vim R
     "jalvesaq/Nvim-R",
     -- {'jalvesaq/Nvim-R', branch = "stable"},
@@ -154,6 +155,17 @@ return require("lazy").setup({
     -- },
     -- Plugin 管理 buffer 的插件
     {'romgrk/barbar.nvim', dependencies = 'nvim-tree/nvim-web-devicons'},
+
+    -- Plugin 用于python IDE
+    -- {'jpalardy/vim-slime', ft = {'python', 'raku', 'rakumod', 'rakutest'}},
+    {
+        "kiyoon/jupynium.nvim",
+        build = "pip3 install --user . --upgrade pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org",
+        -- build = "conda run --no-capture-output -n jupynium pip install .",
+        enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+    },
+    "rcarriga/nvim-notify",   -- optional
+    "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
 
     -- raku lsp plugin dev
     -- use '~/projects/raku_nvim/raku-lsp-lite.nvim'

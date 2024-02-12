@@ -2,7 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- utf9
+-- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = "utf-8"
 -- jk移动时光标下上方保留8行
@@ -180,4 +180,9 @@ vim.api.nvim_create_user_command('ProxyOff', function()
 vim.cmd[[
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
+]]
+
+-- vim slime
+vim.cmd[[
+let g:slime_target = "neovim"
 ]]

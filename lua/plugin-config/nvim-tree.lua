@@ -6,6 +6,11 @@ end
 
 local list_keys = require('keybindings').nvimTreeList
 nvim_tree.setup({
+    -- system open
+    system_open = {
+        cmd = 'open'
+    },
+
     -- not show the menue in new tab
     open_on_tab = false,
     -- 显示 git 状态图标
