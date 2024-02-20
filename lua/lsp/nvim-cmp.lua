@@ -21,8 +21,8 @@ cmp.setup {
     sources = cmp.config.sources(
         {
             { name = "jupynium", priority = 14 },
-            { name = 'nvim_lsp', priority = 11 },
-            { name = 'ultisnips', priority = 20 },
+            { name = 'nvim_lsp', priority = 21 },
+            { name = 'ultisnips', priority = 22 },
             { name = 'buffer', priority = 13 },
             { name = 'path', priority = 5 },
             { name = 'cmp_nvim_r', priority = 12 }
