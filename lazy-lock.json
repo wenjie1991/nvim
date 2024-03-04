@@ -61,7 +61,14 @@
   "vim-solarized8": { "branch": "master", "commit": "6178a07f442a1fe559673cef6ac2b7031ab21edb" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
+<<<<<<< HEAD
   "vim-visual-multi": { "branch": "master", "commit": "fe1ec7e430013b83c8c2dee85ae496251b71e253" },
   "vista.vim": { "branch": "master", "commit": "f76cecc430003968e6174cae899c2cb2953219b7" },
   "vscode.nvim": { "branch": "main", "commit": "2f248dceb66b5706b98ee86370eb7673862a3903" }
 }
+=======
+  "vim-visual-multi": { "branch": "master", "commit": "cff14071098de5279743b009c496303995fe4df9" },
+  "vista.vim": { "branch": "master", "commit": "290b815cd5a5ff1fb65a48936633d93e2bf14dbd" },
+  "vscode.nvim": { "branch": "main", "commit": "380c1068612b1bfbe35d70a4f2e58be5030a0707" }
+}
+>>>>>>> 699dfa37e716b6593ea2cd5ae7d8d5edf937a4a1
