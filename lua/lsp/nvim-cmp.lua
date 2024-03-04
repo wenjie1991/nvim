@@ -24,7 +24,7 @@ cmp.setup {
             { name = 'nvim_lsp', priority = 21 },
             { name = 'ultisnips', priority = 22 },
             { name = 'buffer', priority = 13 },
-            { name = 'path', priority = 5 },
+            { name = 'path', priority = 23 },
             { name = 'cmp_nvim_r', priority = 12 }
         }),
     sorting = {

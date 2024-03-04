@@ -7,7 +7,11 @@ local lsp_servers = {
     "html",
     "bashls",
     -- "r_language_server",
-    "clangd"
+    "clangd",
+    "eslint",
+    "biome",
+    'rust_analyzer',
+    'tsserver',
 }
 -- using plug "mason" to ensure the installation
 -- should before the lsp config
@@ -20,6 +24,7 @@ require("mason").setup {
 }
 require("mason-lspconfig").setup {
     -- ensure_installed = { "sumneko_lua" },
+    ensure_installed = { "lua_ls", "gopls", "pyright", "jsonls", "html", "bashls", "clangd", "eslint", "biome", 'rust_analyzer', 'tsserver' },
 }
 
 -- 需要特殊配置的lsp server

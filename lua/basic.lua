@@ -10,14 +10,15 @@ vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 -- 使用相对行号
 vim.wo.number = true
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 -- 高亮所在行
 -- vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
 -- vim.wo.colorcolumn = "100"
--- 缩进4个空格等于一个Tab
+-- The format setting will be overwritten by .editorconfig
+-- 缩进2个空格等于一个Tab
 vim.o.tabstop = 4
 vim.bo.tabstop = 4
 vim.o.softtabstop = 4
@@ -164,23 +165,17 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 -- vim.g.copilot_proxy_strict_ssl = false
 
 vim.api.nvim_create_user_command('ProxyOn', function()
-        vim.g.copilot_proxy = 'http://proxyp:3128'
-        vim.api.nvim_command('Copilot restart')
-        -- vim.g.copilot_proxy_strict_ssl = false
-    end, 
-{})
+    vim.g.copilot_proxy = 'http://proxyp:3128'
+    vim.api.nvim_command('Copilot restart')
+    -- vim.g.copilot_proxy_strict_ssl = false
+end, 
+    {})
 vim.api.nvim_create_user_command('ProxyOff', function()
-        vim.g.copilot_proxy = ''
-        vim.api.nvim_command('Copilot restart')
-        -- vim.g.copilot_proxy_strict_ssl = false
-    end, 
-{})
-
--- curosr move slow
-vim.cmd[[
-let g:matchparen_timeout = 2
-let g:matchparen_insert_timeout = 2
-]]
+    vim.g.copilot_proxy = ''
+    vim.api.nvim_command('Copilot restart')
+    -- vim.g.copilot_proxy_strict_ssl = false
+end, 
+    {})
 
 -- vim slime
 vim.cmd[[

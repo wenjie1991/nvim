@@ -145,10 +145,6 @@ vim.cmd([[
 ]])
 
 -- hop.nvim
-map("n", "<leader>w", ":HopWord<CR>", opt)
-map("n", "<leader>l", ":HopLine<CR>", opt)
-map("x", "<leader>w", ":HopWord<CR>", opt)
-map("x", "<leader>l", ":HopLine<CR>", opt)
 local hop = require("hop")
 local directions = require("hop.hint").HintDirection
 vim.keymap.set("", "<leader>l", function()
