@@ -72,6 +72,7 @@ return require("lazy").setup({
     "tpope/vim-fugitive",
     "lewis6991/gitsigns.nvim",
 
+    -- Shortcut for editing
     "tpope/vim-repeat",
     "tpope/vim-surround",
     "tpope/vim-unimpaired",
@@ -115,7 +116,8 @@ return require("lazy").setup({
     },
     -- Github copilot
     "github/copilot.vim",
-
+    -- auto pair
+    -- { 'windwp/nvim-autopairs', event = "InsertEnter", opts = {} },
     -- 格式化代码
     { "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
     "rlue/vim-barbaric",
@@ -142,27 +144,15 @@ return require("lazy").setup({
     -- Enable the function signature hint
     'ray-x/lsp_signature.nvim',
     'vim-voom/VOoM',
-    -- {
-    --     "jackMort/ChatGPT.nvim",
-    --     config = function(,
-    --         require("chatgpt",.setup()
-    --     end,
-    --     requires = {
-    --         "MunifTanjim/nui.nvim",
-    --         "nvim-lua/plenary.nvim",
-    --         "nvim-telescope/telescope.nvim"
-    --     }
-    -- },
-    -- Plugin 管理 buffer 的插件
+   -- Plugin 管理 buffer 的插件
     {'romgrk/barbar.nvim', dependencies = 'nvim-tree/nvim-web-devicons'},
 
     -- Plugin 用于python IDE
-    -- {'jpalardy/vim-slime', ft = {'python', 'raku', 'rakumod', 'rakutest'}},
     {
         "kiyoon/jupynium.nvim",
         build = "pip3 install --user . --upgrade pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org",
         -- build = "conda run --no-capture-output -n jupynium pip install .",
-        enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+        -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
     },
     "rcarriga/nvim-notify",   -- optional
     "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
@@ -170,4 +160,9 @@ return require("lazy").setup({
     -- raku lsp plugin dev
     -- use '~/projects/raku_nvim/raku-lsp-lite.nvim'
     {'wenjie1991/raku-lsp-lite', ft = {'raku', 'perl6', 'rakumod', 'rakutest'}},
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    },
 })

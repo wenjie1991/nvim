@@ -45,6 +45,7 @@
   "promise-async": { "branch": "main", "commit": "93540c168c5ed2b030ec3e6c40ab8bbb85e36355" },
   "raku-lsp-lite": { "branch": "main", "commit": "449ee2a3da39945caf4c068bd5f845e2956c5944" },
   "ranger.nvim": { "branch": "main", "commit": "d3b032feee6b3b0cf923222f260523e2bd7f3ad3" },
+  "rustaceanvim": { "branch": "master", "commit": "69a22c2ec63ab375190006751562b62ebb318250" },
   "solarized.nvim": { "branch": "master", "commit": "fe02ed49cc017cc93657bd6306a2624394611c69" },
   "tabular": { "branch": "master", "commit": "339091ac4dd1f17e225fe7d57b48aff55f99b23a" },
   "telescope.nvim": { "branch": "master", "commit": "67c598fdd4fca113224281c85721c4d8a6df055e" },

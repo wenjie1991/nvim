@@ -1,4 +1,6 @@
 require("jupynium").setup({
+    firefox_profiles_ini_path = "~/.mozilla/firefox/profiles.ini",
+
     auto_start_server = {
         enable = true,
         file_pattern = { "*.ju.r", "*.ju.py" }
