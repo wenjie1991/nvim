@@ -58,16 +58,6 @@ return require("lazy").setup({
         'nvim-telescope/telescope.nvim',
         dependencies =  {'nvim-lua/plenary.nvim'}
     },
-    -- 方便操作
-    -- "tpope/vim-commentary",
-    -- 'tomtom/tcomment_vim',
-    {
-        'numToStr/Comment.nvim',
-        opts = {
-            -- add any options here
-        },
-        lazy = false,
-    },
     -- github plugin
     "tpope/vim-fugitive",
     "lewis6991/gitsigns.nvim",
