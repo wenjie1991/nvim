@@ -1,6 +1,6 @@
 -- local colorscheme = "onedark"
 -- vim.o.background = "dark"
-vim.o.background = "light"
+-- vim.o.background = "light"
 -- local colorscheme = "solarized-high"
 -- local colorscheme = "github_light"
 
@@ -9,7 +9,7 @@ local colorscheme = "vscode"
 local c = require('vscode.colors').get_colors()
 require('vscode').setup({
     -- Alternatively set style in setup
-    -- style = 'light'
+    style = 'dark',
 
     -- Enable transparent background
     transparent = false,

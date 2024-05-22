@@ -32,6 +32,8 @@ return require("lazy").setup({
     'sainnhe/gruvbox-material',
     { 'projekt0n/github-nvim-theme' },
     'Mofiqul/vscode.nvim',
+    -- check the color used in the buffer
+    'norcalli/nvim-colorizer.lua',
     -- 首页
     "goolord/alpha-nvim",
     -- 对齐线
@@ -122,6 +124,8 @@ return require("lazy").setup({
     { "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
     "rlue/vim-barbaric",
     {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
+    -- vim python
+    "jalvesaq/vimcmdline",
     -- vim R
     "jalvesaq/Nvim-R",
     -- {'jalvesaq/Nvim-R', branch = "stable"},
