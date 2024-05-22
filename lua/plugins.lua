@@ -49,6 +49,16 @@ return require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate"
     },
+    -- 高亮 TODO
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
     -- lsp支持
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
