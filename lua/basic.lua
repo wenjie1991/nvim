@@ -178,7 +178,31 @@ vim.api.nvim_create_user_command('ProxyOff', function()
 end, 
     {})
 
--- vim slime
+-- vimcmdline
 vim.cmd[[
-let g:slime_target = "neovim"
+let cmdline_follow_colorscheme = 1
 ]]
+vim.g.cmdline_actions = {
+     r = {
+         {'<LocalLeader>l', 'ls()'},
+         {'<LocalLeader>s', 'summary(%s)'},
+         {'<LocalLeader>r', 'print(%s)'},
+         {'<LocalLeader>t', 'str(%s)'},
+         {'<LocalLeader>h', 'help(%s)'},
+         {'<LocalLeader>a', 'args(%s)'},
+     },
+     python = {
+         {'<LocalLeader>l', 'locals()'},
+         {'<LocalLeader>g', 'globals()'},
+         {'<LocalLeader>p', 'print(%s)'},
+         {'<LocalLeader>t', 'type(%s)'},
+         {'<LocalLeader>d', 'dir(%s)'},
+     }
+ }
+
+-- blink cursor
+-- vim.cmd[[
+-- set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
+-- " set guicursor=a:blinkon100
+-- ]]
+

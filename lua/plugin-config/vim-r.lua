@@ -24,7 +24,6 @@ au BufNewFile,BufReadPost *.R,*.r noremap <buffer> <silent> \cd i\code{<ESC>ea}<
 
 let R_hi_fun = 1 " Highlight R functions
 let R_hi_fun_paren = 1 " Highlight R functions only if followed by a `(`
-" let R_hi_fun_globenv =1 " Highlight R functions from .GlobalEnv
 
 " let R_show_args = 0
 let R_objbr_w = 30 

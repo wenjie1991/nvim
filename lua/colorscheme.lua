@@ -1,8 +1,39 @@
+<<<<<<< HEAD
 -- local colorscheme = "onedark"
 -- vim.o.background = "dark"
 -- vim.o.background = "light"
 -- local colorscheme = "solarized-high"
 -- local colorscheme = "github_light"
+=======
+-- Function to determine if running in an SSH session
+local function is_ssh_session()
+    return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
+end
+
+-- Function to determine the operating system
+local function get_os()
+    local os_name
+    if vim.fn.has("mac") == 1 then
+        os_name = "macos"
+    elseif vim.fn.has("unix") == 1 then
+        local uname = vim.fn.system("uname")
+        if uname:match("Linux") then
+            os_name = "linux"
+        end
+    end
+    return os_name
+end
+
+local theme_style = "light"
+local os_name = get_os()
+if os_name == "linux" and not is_ssh_session() then
+    -- Running locally on Linux (Ubuntu)
+    theme_style = "dark"
+elseif is_ssh_session() or os_name == "macos" then
+    -- Running in an SSH session or on macOS
+    theme_style = "light"
+end
+>>>>>>> 4a2d9907a238d77eb311c2ff993db9b448f6a0ec
 
 
 -- begin: vscode theme configuration
@@ -10,7 +41,11 @@ local colorscheme = "vscode"
 local c = require('vscode.colors').get_colors()
 require('vscode').setup({
     -- Alternatively set style in setup
+<<<<<<< HEAD
     style = 'light',
+=======
+    style = theme_style,
+>>>>>>> 4a2d9907a238d77eb311c2ff993db9b448f6a0ec
 
     -- Enable transparent background
     transparent = false,
@@ -43,3 +78,10 @@ if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not Found")
 	return
 end
+
+-- local colorscheme = "onedark"
+-- vim.o.background = "dark"
+-- vim.o.background = "light"
+-- local colorscheme = "solarized-high"
+-- local colorscheme = "github_light"
+

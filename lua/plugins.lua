@@ -32,6 +32,8 @@ return require("lazy").setup({
     'sainnhe/gruvbox-material',
     { 'projekt0n/github-nvim-theme' },
     'Mofiqul/vscode.nvim',
+    -- check the color used in the buffer
+    'norcalli/nvim-colorizer.lua',
     -- 首页
     "goolord/alpha-nvim",
     -- 对齐线
@@ -46,6 +48,16 @@ return require("lazy").setup({
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate"
+    },
+    -- 高亮 TODO
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
     },
     -- lsp支持
     "neovim/nvim-lspconfig",
@@ -112,6 +124,8 @@ return require("lazy").setup({
     { "jose-elias-alvarez/null-ls.nvim", dependencies = "nvim-lua/plenary.nvim" },
     "rlue/vim-barbaric",
     {'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async'},
+    -- vim python
+    "jalvesaq/vimcmdline",
     -- vim R
     "jalvesaq/Nvim-R",
     -- {'jalvesaq/Nvim-R', branch = "stable"},
