@@ -12,6 +12,7 @@ local lsp_servers = {
     "biome",
     'rust_analyzer',
     'tsserver',
+    'mojo'
 }
 -- using plug "mason" to ensure the installation
 -- should before the lsp config

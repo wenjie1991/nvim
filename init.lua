@@ -1,3 +1,6 @@
+-- Define the python3 bin at the beginning to avoid any issues with the system python
+vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
+
 -- lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

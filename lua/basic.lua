@@ -94,8 +94,6 @@ vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.pumheight = 10
 -- always show tabline
 -- vim.o.showtabline = 2
-vim.g.python3_host_prog = "~/.config/nvim/nvim-python/bin/python3"
-vim.g.undofile = true
 vim.undodir = "~/.vim/undo"
 -- show marker
 vim.cmd [[

@@ -1,10 +1,3 @@
-<<<<<<< HEAD
--- local colorscheme = "onedark"
--- vim.o.background = "dark"
--- vim.o.background = "light"
--- local colorscheme = "solarized-high"
--- local colorscheme = "github_light"
-=======
 -- Function to determine if running in an SSH session
 local function is_ssh_session()
     return os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION")
@@ -33,7 +26,6 @@ elseif is_ssh_session() or os_name == "macos" then
     -- Running in an SSH session or on macOS
     theme_style = "light"
 end
->>>>>>> 4a2d9907a238d77eb311c2ff993db9b448f6a0ec
 
 
 -- begin: vscode theme configuration
@@ -41,11 +33,7 @@ local colorscheme = "vscode"
 local c = require('vscode.colors').get_colors()
 require('vscode').setup({
     -- Alternatively set style in setup
-<<<<<<< HEAD
-    style = 'light',
-=======
     style = theme_style,
->>>>>>> 4a2d9907a238d77eb311c2ff993db9b448f6a0ec
 
     -- Enable transparent background
     transparent = false,
@@ -57,9 +45,9 @@ require('vscode').setup({
     disable_nvimtree_bg = true,
 
     -- Override colors (see ./lua/vscode/colors.lua)
-    color_overrides = {
-        vscLineNumber = '#000000',
-    },
+    -- color_overrides = {
+        -- vscLineNumber = '#000000',
+    -- },
 
     -- Override highlight groups (see ./lua/vscode/theme.lua)
     group_overrides = {
